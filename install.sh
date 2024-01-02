@@ -37,7 +37,8 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
 fi
 
 # Installing chatgpt script
-curl -sS https://raw.githubusercontent.com/0xacx/chatGPT-shell-cli/main/chatgpt.sh -o /usr/local/bin/chatgpt
+#curl -sS https://raw.githubusercontent.com/0xacx/chatGPT-shell-cli/main/chatgpt.sh -o /usr/local/bin/chatgpt
+cp chatgpt.sh /usr/local/bin/chatgpt
 
 # Replace open image command with xdg-open for linux systems
 if [[ "$OSTYPE" == "linux"* ]] || [[ "$OSTYPE" == "freebsd"* ]]; then
