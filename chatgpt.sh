@@ -1,4 +1,6 @@
 #!/bin/bash
+# 要先設定 OPENAI_API_KEY
+OPENAI_KEY=abcggd
 
 GLOBIGNORE="*"
 
@@ -310,7 +312,7 @@ if [ -n "$prompt" ]; then
 	pipe_mode_prompt=${prompt}
 # if input file_descriptor is a terminal, run on chat mode
 elif [ -t 0 ]; then
-	echo -e "Welcome to chatgpt. You can quit with '\033[36mexit\033[0m' or '\033[36mq\033[0m'."
+	echo -e "歡迎使用 ChatGPT. 離開請鍵入 '\033[36mexit\033[0m' 或 '\033[36mq\033[0m'."
 # prompt from pipe or redirected stdin, run on pipe mode
 else
 	pipe_mode_prompt+=$(cat -)
@@ -325,7 +327,7 @@ while $running; do
 			input_from_temp_file=$(cat "${USER_INPUT_TEMP_FILE}")
 			prompt=$(escape "$input_from_temp_file")
 		else
-			echo -e "\nEnter a prompt:"
+			echo -ne "\n請輸入提示語:"
 			read -e prompt
 		fi
 		if [[ ! $prompt =~ ^(exit|q)$ ]]; then
@@ -359,7 +361,7 @@ while $running; do
 			echo "Would you like to open it? (Yes/No)"
 			read -e answer
 			if [ "$answer" == "Yes" ] || [ "$answer" == "yes" ] || [ "$answer" == "y" ] || [ "$answer" == "Y" ] || [ "$answer" == "ok" ]; then
-				open "${image_url}"
+				xdg-open "${image_url}"
 			fi
 		fi
 	elif [[ "$prompt" == "history" ]]; then
